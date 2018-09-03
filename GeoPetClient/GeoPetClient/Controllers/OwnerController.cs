@@ -10,8 +10,6 @@ namespace GeoPetClient.Controllers
     [ApiController]
     public class OwnerController : ControllerBase
     {
-        private static List<Owner> owners = new List<Owner>();
-
         [HttpGet("byEmail")]
         public Owner Get(string email)
         {

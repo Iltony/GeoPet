@@ -11,15 +11,20 @@ namespace GeoPetClient.Controllers
     [ApiController]
     public class PetController : ControllerBase
     {
-        private static List<Pet> pets = new List<Pet>();
-
-        ////api/PetController/byEmail?email=fedelima@endava.com
+        ////api/PetController/byEmail?email=someone@endava.com
         [HttpGet("byEmail")]
         public List<Pet> GetPets(string email)
         {
             var context = GeoPetContext.GetInstance();
-
             return context.Pets.Where(x => x.Email.Equals(email)).ToList();
+        }
+
+        ////api/PetController/byEmailName?email=someone@endava.com&name=yourName
+        [HttpGet("byEmailName")]
+        public Pet GetPetsByEmailAndName(string email, string name)
+        {
+            var context = GeoPetContext.GetInstance();
+            return context.Pets.Where(pet => pet.Email.Equals(email) && pet.Name.Equals(name)).SingleOrDefault();
         }
 
         [HttpPost]
