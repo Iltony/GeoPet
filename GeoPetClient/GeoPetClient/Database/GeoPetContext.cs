@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using GeoPetClient.DataModels;
+
 namespace GeoPetClient.Database
 {
     public class GeoPetContext : DbContext
@@ -18,5 +20,8 @@ namespace GeoPetClient.Database
 
             optionsBuilder.UseSqlite(@"DataSource=geopet.db;");
         }
+
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Pet> Pets { get; set; }
     }
 }
