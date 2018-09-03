@@ -19,6 +19,12 @@ namespace GeoPetClient.Database
                 u.Email,
                 u.Name
             });
+
+            modelBuilder.Entity<LostPet>().HasKey(u => new
+            {
+                u.Email,
+                u.Name
+            });
         }
 
         public static GeoPetContext GetInstance()
@@ -34,5 +40,6 @@ namespace GeoPetClient.Database
 
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Pet> Pets { get; set; }
+        public DbSet<LostPet> LostPets { get; set; }
     }
 }

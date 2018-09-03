@@ -17,7 +17,7 @@ namespace GeoPetClient
         public static void Main(string[] args)
         {
             var context = GeoPetContext.GetInstance();
-            GeoPetContextSeeder.Seed(context);
+            GeoPetContextSeeder.SeedTestData(context);
 
             context.SaveChanges();
             CreateWebHostBuilder(args).Build().Run();

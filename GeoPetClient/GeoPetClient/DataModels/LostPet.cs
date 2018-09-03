@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GeoPetClient.DataModels
 {
+    [Table("LostPet")]
     public class LostPet
     {
         public string Email { get; set; }
