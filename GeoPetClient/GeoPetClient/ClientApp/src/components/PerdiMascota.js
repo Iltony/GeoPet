@@ -69,14 +69,17 @@ export class PerdiMascota extends Component {
 	setLostPetButtonHandled(e) {
 
 		const opts = {
-			Email: this.state.user.email,
-			Name: this.state.lostPet,
-			Longitude: this.state.lostLocationPushPin.longitude,
-			Latitude: this.state.lostLocationPushPin.latitude,
-			LostDate: new Date()
+			email: this.state.user.email,
+			name: this.state.lostPet,
+            longitude: `${this.state.lostLocationPushPin[0].location[0]}`,
+            latitude: `${this.state.lostLocationPushPin[0].location[1]}`,
+			lostDate: "01/01/2018"
 		}
 
-		fetch(`api/Lost`, {
+        fetch(`api/Lost`, {
+            headers: {
+                "Content-Type": 'application/json',
+            },
 			method: 'post',
 			body: JSON.stringify(opts)
 		})
