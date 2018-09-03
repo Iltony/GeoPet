@@ -15,11 +15,22 @@ namespace GeoPetClient.Database
 {
     public class GeoPetContext : DbContext
     {
+        private static GeoPetContext _instancia = null;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
             optionsBuilder.UseSqlite(@"DataSource=geopet.db;");
         }
+
+        public static GeoPetContext GetInstance()
+        {
+            if(GeoPetContext._instancia == null)
+                _instancia = new GeoPetContext();
+            return _instancia;
+        }
+
+        
 
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Pet> Pets { get; set; }
