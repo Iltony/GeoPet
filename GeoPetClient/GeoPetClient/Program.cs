@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GeoPetClient.Database;
+using GeoPetClient.DataModels;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ namespace GeoPetClient
             var context = GeoPetContext.GetInstance();
             GeoPetContextSeeder.Seed(context);
 
+            context.SaveChanges();
             CreateWebHostBuilder(args).Build().Run();
             
         }

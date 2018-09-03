@@ -26,9 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="geopet.db">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
+    <Compile Remove="Migrations\20180903181918_Initial.cs" />
+    <Compile Remove="Migrations\20180903181918_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20180903182236_Initial.cs" />
+    <Compile Remove="Migrations\20180903182236_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20180903183415_Initial.cs" />
+    <Compile Remove="Migrations\20180903183415_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20180903183535_Initial2.cs" />
+    <Compile Remove="Migrations\20180903183535_Initial2.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

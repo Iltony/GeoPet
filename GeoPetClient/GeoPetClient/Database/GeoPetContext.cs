@@ -25,7 +25,9 @@ namespace GeoPetClient.Database
         {
             if(_instance == null)
             {
+                
                 _instance = new GeoPetContext();
+                _instance.Database.EnsureCreated();
             }
             return _instance;
         }
