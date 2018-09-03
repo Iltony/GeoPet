@@ -19,6 +19,8 @@ namespace GeoPetClient
 
 		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
-				.UseStartup<Startup>();
+
+                .UseUrls(urls: "http://localhost:10000")
+                .UseStartup<Startup>();
 	}
 }
