@@ -35,7 +35,7 @@ export class EncontreMascota extends Component {
 				"Content-Type": "application/json"
 			}
 		})
-		.then(response => response.json())
+		// .then(response => response.json())
 		.then(data => {
 			console.log(data);
 		});
