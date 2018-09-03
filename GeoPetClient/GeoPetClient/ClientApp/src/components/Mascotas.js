@@ -7,7 +7,7 @@ export class Mascotas extends Component {
 		super(props);
 		this.state = { forecasts: [], loading: true };
 
-		fetch('api/SampleData/WeatherForecasts')
+		fetch('api/PetController/byEmail?email=fedelima@endava.com')
 			.then(response => response.json())
 			.then(data => {
 				this.setState({ forecasts: data, loading: false });
@@ -21,19 +21,19 @@ export class Mascotas extends Component {
 				<table className='table'>
 					<thead>
 						<tr>
-							<th>Date</th>
-							<th>Temp. (C)</th>
-							<th>Temp. (F)</th>
-							<th>Summary</th>
+							<th>Nombre</th>
+							<th>Tipo Mascota</th>
+							<th>Raza</th>
+							<th>Nacimiento</th>
 						</tr>
 					</thead>
 					<tbody>
 						{forecasts.map(forecast =>
-							<tr key={forecast.dateFormatted}>
-								<td>{forecast.dateFormatted}</td>
-								<td>{forecast.temperatureC}</td>
-								<td>{forecast.temperatureF}</td>
-								<td>{forecast.summary}</td>
+							<tr key={forecast.email + forecast.name}>
+								<td>{forecast.name}</td>
+								<td>{forecast.type}</td>
+								<td>{forecast.race}</td>
+								<td>{forecast.birthdate}</td>
 							</tr>
 						)}
 					</tbody>
