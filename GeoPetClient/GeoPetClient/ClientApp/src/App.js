@@ -9,19 +9,19 @@ import { PerdiMascota } from './components/PerdiMascota';
 import { EncontreMascota } from './components/EncontreMascota';
 
 export default class App extends Component {
-  displayName = App.name
+	displayName = App.name
 
-  render() {
-    return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-		<Route path='/fetchdata' component={FetchData} />
+	render() {
+		return (
+			<Layout>
+				<Route exact path='/' component={Home} />
+				<Route path='/counter' component={Counter} />
+				<Route path='/fetchdata' component={FetchData} />
 
-			<Route path='/mascotas' component={Mascotas} />
-			<Route path='/perdi-mascota' component={PerdiMascota} />
-			<Route path='/encotre-mascota' component={EncontreMascota} />
-      </Layout>
-    );
-  }
+				<Route path='/mascotas' component={Mascotas} />
+				<Route path='/perdi-mascota' component={PerdiMascota} />
+				<Route path='/encotre-mascota' component={EncontreMascota} />
+			</Layout>
+		);
+	}
 }
