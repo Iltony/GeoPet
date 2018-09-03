@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export class Mascotas extends Component {
 	displayName = Mascotas.name
 
+
 	constructor(props) {
 		super(props);
 		this.state = { forecasts: [], loading: true };
@@ -14,7 +15,7 @@ export class Mascotas extends Component {
 			});
 	}
 
-	static renderForecastsTable(forecasts) {
+	static renderForecastsTable(mascotas) {
 		return (
 			<div>
 				<h1>Mascotas</h1>
@@ -28,12 +29,20 @@ export class Mascotas extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{forecasts.map(forecast =>
-							<tr key={forecast.email + forecast.name}>
-								<td>{forecast.name}</td>
-								<td>{forecast.type}</td>
-								<td>{forecast.race}</td>
-								<td>{forecast.birthdate}</td>
+						{mascotas.map(mascota =>
+							<tr key={mascota.email + mascota.name}>
+								<td>{mascota.name}</td>
+								<td>{mascota.type}</td>
+								<td>{mascota.race}</td>
+								<td>{mascota.birthdate}</td>
+								<td>
+									<button
+										type="button"
+										className="btn btn-primary"
+										onClick={() => (document.location.href = `/ver-mascota?name=${mascota.name}&email=${mascota.email}`)}
+									>Entrar
+								</button>
+								</td>
 							</tr>
 						)}
 					</tbody>
@@ -48,7 +57,7 @@ export class Mascotas extends Component {
 			: Mascotas.renderForecastsTable(this.state.forecasts);
 
 		return (
-			<div>				
+			<div>
 				{contents}
 			</div>
 		);
