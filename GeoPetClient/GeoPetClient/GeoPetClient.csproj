@@ -16,12 +16,24 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.109.1" />
+    <PackageReference Include="TweetinviAPI" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180903181918_Initial.cs" />
+    <Compile Remove="Migrations\20180903181918_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20180903182236_Initial.cs" />
+    <Compile Remove="Migrations\20180903182236_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20180903183415_Initial.cs" />
+    <Compile Remove="Migrations\20180903183415_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20180903183535_Initial2.cs" />
+    <Compile Remove="Migrations\20180903183535_Initial2.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

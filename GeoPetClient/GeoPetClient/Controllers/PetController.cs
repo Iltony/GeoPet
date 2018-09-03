@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using GeoPetClient.Database;
 using GeoPetClient.DataModels;
-using Microsoft.AspNetCore.Http;
+using GeoPetClient.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeoPetClient.Controllers
@@ -12,32 +11,29 @@ namespace GeoPetClient.Controllers
     [ApiController]
     public class PetController : ControllerBase
     {
-        private static List<Pet> pets = new List<Pet>();
-
-        ////api/PetController/byEmail?email=fedelima@endava.com
+        ////api/PetController/byEmail?email=someone@endava.com
         [HttpGet("byEmail")]
         public List<Pet> GetPets(string email)
         {
-            if (pets.Count == 0)
-            {
-                pets.Add(new Pet
-                {
-                    Birthdate = "01/01/2018",
-                    Color = "Black",
-                    Email = "fedelima@endava.com",
-                    ImageUrl = "http://www.google.com/img.jpg",
-                    Name = "Jei ci",
-                    Race = "German shepard",
-                    Type = "Dog"
-                });
-            }
-            return pets.Where(x => x.Email.Equals(email)).ToList();
+            var context = GeoPetContext.GetInstance();
+            return context.Pets.Where(x => x.Email.Equals(email)).ToList();
+        }
+
+        ////api/PetController/byEmailName?email=someone@endava.com&name=yourName
+        [HttpGet("byEmailName")]
+        public Pet GetPetsByEmailAndName(string email, string name)
+        {
+            var context = GeoPetContext.GetInstance();
+            return context.Pets.Where(pet => pet.Email.Equals(email) && pet.Name.Equals(name)).SingleOrDefault();
         }
 
         [HttpPost]
         public void CreatePet([FromBody] Pet pet)
         {
-            pets.Add(pet);
+            var context = GeoPetContext.GetInstance();
+            context.Pets.Add(pet);
+            context.SaveChanges();
+            TwitterHandler.GetInstance().TweetSomething("Se registró una mascota");
         }
     }
 }
