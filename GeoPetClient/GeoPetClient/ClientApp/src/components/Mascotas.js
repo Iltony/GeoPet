@@ -8,7 +8,7 @@ export class Mascotas extends Component {
 		super(props);
 		this.state = { forecasts: [], loading: true };
 
-		fetch('api/PetController/byEmail?email=fedelima@endava.com')
+		fetch('api/PetController/byEmail?email=pBarrios@adinet.com.uy')
 			.then(response => response.json())
 			.then(data => {
 				this.setState({ forecasts: data, loading: false });

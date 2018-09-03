@@ -11,12 +11,17 @@ export class VerMascota extends Component {
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
+    }    
+    nameSt = this.getParameterByName('name');
+    emailSt = this.getParameterByName('email');
 	constructor(props) {
 		super(props);
 		this.state = { forecasts: [], loading: true };
-
-		fetch('api/SampleData/WeatherForecasts')
+    
+        
+        debugger;
+        // api/PetController/byEmailName?email=someone@endava.com&name=yourName
+		fetch(`api/PetController/ByEmailName?name=${this.nameSt}&email=${this.emailSt}`)
 			.then(response => response.json())
 			.then(data => {
 				this.setState({ forecasts: data, loading: false });
