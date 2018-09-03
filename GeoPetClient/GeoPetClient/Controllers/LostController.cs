@@ -1,5 +1,6 @@
 ﻿using GeoPetClient.Database;
 using GeoPetClient.DataModels;
+using GeoPetClient.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,18 @@ namespace GeoPetClient.Controllers
         {
             var context = GeoPetContext.GetInstance();
             context.LostPets.Add(request);
-            var pet = context.Pets.FirstOrDefault<Pet>(p =>
+            var pet = context.Pets.FirstOrDefault(p =>
                 p.Name.Equals(request.Name) &&
                 p.Email.Equals(request.Email));
 
-            if (pet != null) pet.IsLost = true;
+            if (pet != null)
+            {
+                pet.IsLost = true;
+            }
 
             context.SaveChanges();
+            // Tweet lost pet
+            TwitterHandler.GetInstance().TweetLostPet(request);
         }
 
         [HttpGet]

@@ -1,5 +1,12 @@
-﻿using Tweetinvi;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using GeoPetClient.Database;
+using GeoPetClient.DataModels;
+using Tweetinvi;
 using Tweetinvi.Models;
+using Tweetinvi.Parameters;
 
 namespace GeoPetClient.Utils
 {
@@ -21,9 +28,36 @@ namespace GeoPetClient.Utils
             return _instance;
         }
 
-        public void TweetSomething(string text)
+        public void TweetLostPet(LostPet lostPet)
         {
-            Tweet.PublishTweet(text);
+            var context = GeoPetContext.GetInstance();
+            var pet = context.Pets.Where(x => x.Email.Equals(lostPet.Email) && x.Name.Equals(lostPet.Name)).SingleOrDefault();
+            byte[] imgBytes;
+            using (WebClient client = new WebClient())
+            {
+                imgBytes = client.DownloadData(new Uri(pet.ImageUrl));
+            }
+            //Generate any parameters to be included
+            var publishParams = new PublishTweetOptionalParameters();
+            publishParams.MediaBinaries = new List<byte[]> { imgBytes };
+
+            Tweet.PublishTweet($"Se perdió {pet.Name} :(, ayudanos a encontrarl@", publishParams);
+        }
+
+        public void TweetFoundPet(LostPet lostPet)
+        {
+            var context = GeoPetContext.GetInstance();
+            var pet = context.Pets.Where(x => x.Email.Equals(lostPet.Email) && x.Name.Equals(lostPet.Name)).SingleOrDefault();
+            byte[] imgBytes;
+            using (WebClient client = new WebClient())
+            {
+                imgBytes = client.DownloadData(new Uri(pet.ImageUrl));
+            }
+
+            var publishParams = new PublishTweetOptionalParameters();
+            publishParams.MediaBinaries = new List<byte[]> { imgBytes };
+
+            Tweet.PublishTweet($"Encontraron a {pet.Name}!!! :)", publishParams);
         }
 
         private TwitterHandler()

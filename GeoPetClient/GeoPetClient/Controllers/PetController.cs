@@ -33,7 +33,6 @@ namespace GeoPetClient.Controllers
             var context = GeoPetContext.GetInstance();
             context.Pets.Add(pet);
             context.SaveChanges();
-            TwitterHandler.GetInstance().TweetSomething("Se registró una mascota");
         }
     }
 }

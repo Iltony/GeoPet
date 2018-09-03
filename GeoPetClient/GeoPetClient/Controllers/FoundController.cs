@@ -1,5 +1,6 @@
 ﻿using GeoPetClient.Database;
 using GeoPetClient.DataModels;
+using GeoPetClient.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -24,6 +25,7 @@ namespace GeoPetClient.Controllers
             }
 
             context.SaveChanges();
+            TwitterHandler.GetInstance().TweetFoundPet(request);
         }
     }
 }
