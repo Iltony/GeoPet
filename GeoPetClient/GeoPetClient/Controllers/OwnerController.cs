@@ -9,36 +9,16 @@ namespace GeoPetClient.Controllers
     [Route("api/pet/[controller]")]
     public class OwnerController : Controller
     {
-        // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get(string mail)
+        public OwnerModel Get(string mail)
         {
-            return new string[] { "value1", "value2" };
+            return new Owner();
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost()]
+        public string Create([FromBody]CreateOwnerRequest createOwnerRequest)
         {
-            return "value";
-        }
-
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return "created";
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GeoPetClient.DataModels
 {
-    public class UserModel
+    public class CreateOwnerRequest
     {
     }
 }
