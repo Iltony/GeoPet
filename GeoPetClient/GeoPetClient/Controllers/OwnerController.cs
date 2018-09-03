@@ -9,16 +9,16 @@ namespace GeoPetClient.Controllers
     [Route("api/pet/[controller]")]
     public class OwnerController : Controller
     {
-        [HttpGet]
-        public OwnerModel Get(string mail)
-        {
-            return new Owner();
-        }
+        //[HttpGet]
+        //public Owner Get(string mail)
+        //{
+        //    return new Owner();
+        //}
 
-        [HttpPost()]
-        public string Create([FromBody]CreateOwnerRequest createOwnerRequest)
-        {
-            return "created";
-        }
+        //[HttpPost()]
+        //public string Create([FromBody]CreateOwnerRequest createOwnerRequest)
+        //{
+        //    return "created";
+        //}
     }
 }

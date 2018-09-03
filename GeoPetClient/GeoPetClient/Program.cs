@@ -10,17 +10,16 @@ using Microsoft.Extensions.Logging;
 
 namespace GeoPetClient
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			CreateWebHostBuilder(args).Build().Run();
-		}
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateWebHostBuilder(args).Build().Run();
+        }
 
-		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-			WebHost.CreateDefaultBuilder(args)
-
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
                 .UseUrls(urls: "http://localhost:10000")
                 .UseStartup<Startup>();
-	}
+    }
 }
