@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using GeoPetClient.Database;
 using GeoPetClient.DataModels;
-using Microsoft.AspNetCore.Http;
+using GeoPetClient.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeoPetClient.Controllers
@@ -30,6 +28,7 @@ namespace GeoPetClient.Controllers
             var context = GeoPetContext.GetInstance();
             context.Pets.Add(pet);
             context.SaveChanges();
+            TwitterHandler.GetInstance().TweetSomething("Se registró una mascota");
         }
     }
 }
