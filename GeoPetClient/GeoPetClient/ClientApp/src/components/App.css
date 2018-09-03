@@ -1,0 +1,20 @@
+﻿.lostMyPetHereMap {
+    height: 500px;
+}
+
+.lostPetsSelect {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.lostPetsButton {
+    width: 200px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
