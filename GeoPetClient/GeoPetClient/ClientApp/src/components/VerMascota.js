@@ -30,26 +30,29 @@ export class VerMascota extends Component {
 
 	static renderForecastsTable(forecast) {
 		return (
-			<div style={{ 'width': '500px', 'margin': '0 auto', 'paddingTop': '70px' }}>
+			<div style={{ 'width': '500px' }}>
                 <h1>Datos de la mascota</h1>
 				<div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <div class="alert alert-info" role="alert">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <div class="alert" role="alert">
                         {forecast.name}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <div class="alert alert-info" role="alert">
+                    <label for="exampleInputPassword1">Raza</label>
+                    <div class="alert" role="alert">
                         {forecast.race}
                     </div>
                 </div>
                 <div class="form-check">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    <div class="alert alert-info" role="alert">
-                        {forecast.race}
+                <label for="exampleInputPassword1">Nacimiento</label>
+                    <div class="alert" role="alert">
+                        {forecast.birthdate}
                     </div>
                 </div>
+
+                <img src={forecast.imageUrl}/>
+
 	
 			</div>
 		);

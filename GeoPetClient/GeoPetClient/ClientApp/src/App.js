@@ -32,7 +32,7 @@ export default class App extends Component {
 
 				<Route path='/mascotas' component={Mascotas}/>
 				<Route path='/perdi-mascota' component={PerdiMascota} />
-				<Route path='/encotre-mascota' component={EncontreMascota} />
+				<Route path='/encontre-mascota' component={EncontreMascota} />
 				<Route path='/ver-mascota' component={VerMascota} />
 			</Layout>
 		);
