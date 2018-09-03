@@ -10,24 +10,19 @@ export class PerdiMascota extends Component {
 		super(props);
 		this.state = {
 			bingMapsKey: 'AkdTDUUzA1xA27bQiYIqsLFLBUPUrfpGY6SxbNQ70kdVua0HomPyx0b6dmjaygE9',
-            pets: [
-				{name: 'pepe0'},
-				{name: 'pepe1'},
-				{name: 'pepe2'},
-				{name: 'pepe3'}
-			],
+            pets: [],
             lostPet: null,
 			currentLocation: null,
 			lostLocationPushPin : [],
-			loading: false
+			loading: false,
+			user: { email: 'pBarrios@adinet.com.uy' }
 		};
 
-		// fetch(`api/PetController/GetPets/${this.props.user.mail}`)
-		// 	.then(response => response.json())
-		// 	.then(data => {
-		// 		this.setState({ ...state, { { pets: data, loading: false }});
-		// 	});
-
+        fetch(`api/PetController/byEmail?email=${this.state.user.email}`)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ ...this.state, lostPet: data[0].name, pets: data, loading: false });
+            });
     }
 
     componentDidMount() {
@@ -44,7 +39,7 @@ export class PerdiMascota extends Component {
 	renderPetsSelect(pets) {
         return (
 			<div className="form-group center-block">
-				<label htmlFor="selectPets" >Elija la mascota:</label>
+				<label htmlFor="selectPets" >Cual?</label>
 				<select className="form-control lostPetsSelect" id='selectPets' onChange={this.setLostPetHandled.bind(this)}>
 					{
 						this.state.pets.map(pet => <option key={pet.name}>{pet.name}</option>)
@@ -71,6 +66,26 @@ export class PerdiMascota extends Component {
 		});
 	}
 
+	setLostPetButtonHandled(e) {
+
+		const opts = {
+			Email: this.state.user.email,
+			Name: this.state.lostPet,
+			Longitude: this.state.lostLocationPushPin.longitude,
+			Latitude: this.state.lostLocationPushPin.latitude,
+			LostDate: new Date()
+		}
+
+		fetch(`api/Lost`, {
+			method: 'post',
+			body: JSON.stringify(opts)
+		})
+		//.then(response => response.json())
+		.then(data => {
+			alert(`gracias, vamos a ayudarte a encontrar a ${this.state.lostPet}!!`);
+		});
+	}
+	
 	renderMap(currentLocation, bingmapKey, lostLocationPushPin) {
         
 		const centerPoint = [];
@@ -85,7 +100,7 @@ export class PerdiMascota extends Component {
                     center = {centerPoint} 
 				    bingmapKey={ bingmapKey }
                     pushPins={lostLocationPushPin}
-                    zoom={0}
+                    zoom={16}
 				    getLocation={{
 						    addHandler: 'click', 
 						    callback: this.getLocationHandled.bind(this)
@@ -97,21 +112,22 @@ export class PerdiMascota extends Component {
 
 	render() {
 		let contentsPets = this.state.loading
-			? <p><em>Loading...</em></p>
+			? <p><em>Cargando...</em></p>
 			: this.renderPetsSelect(this.state.pets);
 
 		let contentsMap = this.state.loadingMap
-			? <p><em>Loading...</em></p>
+            ? <p><em>Cargando...</em></p>
 			: this.renderMap(this.state.currentLocation, this.state.bingMapsKey, this.state.lostLocationPushPin);
 
+		let showButton = this.state.lostPet && this.state.lostLocationPushPin.length > 0
 		return (
 			<div>
                 <h1>Se te perdió la mascota?</h1>
 				{contentsPets}
-				<p>Indíque la ubicación donde perdió su mascota:</p>
+				<p>Donde?</p>
 				{contentsMap}
 
-                <button type="button" className="center-block btn btn-primary lostPetsButton">Vamos a Buscarlo</button>
+                {showButton && <button type="button" className="center-block btn btn-primary lostPetsButton" onClick={this.setLostPetButtonHandled.bind(this)}>Ayudame a encontrarlo</button>}
 			</div>
 		);
 	}
