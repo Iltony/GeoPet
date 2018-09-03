@@ -32,6 +32,8 @@ namespace GeoPetClient.Database
                 Race = "Cocker",
                 Type = "Perro"
             }));
+
+            context.SaveChanges();
         }
     }
 }
