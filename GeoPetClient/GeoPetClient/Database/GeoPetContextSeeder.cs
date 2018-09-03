@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GeoPetClient.DataModels;
+using Tweetinvi.Core.Extensions;
 
 namespace GeoPetClient.Database
 {
@@ -40,7 +41,7 @@ namespace GeoPetClient.Database
         public static void SeedTestData(GeoPetContext context)
         {
 
-            if (context.Owners.Any())
+            if (context.Owners.IsEmpty())
             {
 
                 context.Owners.Add((new Owner
