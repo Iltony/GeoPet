@@ -27,7 +27,7 @@ namespace GeoPetClient.Controllers
                     Email = "fedelima@endava.com",
                     ImageUrl = "http://www.google.com/img.jpg",
                     Name = "Jei ci",
-                    Race = "German",
+                    Race = "German shepard",
                     Type = "Dog"
                 });
             }
