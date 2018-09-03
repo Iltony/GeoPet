@@ -34,5 +34,6 @@ namespace GeoPetClient.Database
 
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Pet> Pets { get; set; }
+        public DbSet<LostPet> LostPets { get; set; }
     }
 }
