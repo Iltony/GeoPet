@@ -7,6 +7,7 @@ import { Counter } from './components/Counter';
 import { Mascotas } from './components/Mascotas';
 import { PerdiMascota } from './components/PerdiMascota';
 import { EncontreMascota } from './components/EncontreMascota';
+import { LogIn } from './components/LogIn';
 
 export default class App extends Component {
 	displayName = App.name
@@ -14,7 +15,8 @@ export default class App extends Component {
 	render() {
 		return (
 			<Layout>
-				<Route exact path='/' component={Home} />
+				<Route exact path='/' component={LogIn} />
+				<Route exact path='/home' component={Home} />
 				<Route path='/counter' component={Counter} />
 				<Route path='/fetchdata' component={FetchData} />
 
