@@ -1,0 +1,7 @@
+language: csharp
+dotnet: 2.1.401
+mono: none
+install:
+  - cd ./GeoPetClient/
+  - dotnet restore
+  - dotnet build
