@@ -7,7 +7,7 @@ namespace GeoPetClient.DataModels
     [Table("Pet")]
     public class Pet
     {
-        [Key]
+        
         public string Email { get; set; }
         public string Race { get; set; }
         public string Name { get; set; }

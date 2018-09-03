@@ -12,6 +12,15 @@ namespace GeoPetClient.Database
             optionsBuilder.UseSqlite(@"DataSource=geopet.db;");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Pet>().HasKey(u => new
+            {
+                u.Email,
+                u.Name
+            });
+        }
+
         public static GeoPetContext GetInstance()
         {
             if(_instance == null)
