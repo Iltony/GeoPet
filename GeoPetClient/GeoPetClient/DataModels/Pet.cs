@@ -18,5 +18,6 @@ namespace GeoPetClient.DataModels
         public string Color { get; set; }
         public string ImageUrl { get; set; }
         public string Birthdate { get; set; }
+        public bool IsLost { get; set; }
     }
 }

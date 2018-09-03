@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using GeoPetClient.Database;
 using GeoPetClient.DataModels;
 using Microsoft.AspNetCore.Mvc;
