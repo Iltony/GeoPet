@@ -1,0 +1,6 @@
+language: csharp
+dotnet: 2.1.0
+mono: none
+install:
+  - dotnet restore
+  - dotnet build
