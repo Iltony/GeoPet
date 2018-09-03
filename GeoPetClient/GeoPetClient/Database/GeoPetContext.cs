@@ -1,14 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
 using GeoPetClient.DataModels;
 
 namespace GeoPetClient.Database
@@ -24,8 +14,10 @@ namespace GeoPetClient.Database
 
         public static GeoPetContext GetInstance()
         {
-            if(GeoPetContext._instance == null)
+            if(_instance == null)
+            {
                 _instance = new GeoPetContext();
+            }
             return _instance;
         }
 
