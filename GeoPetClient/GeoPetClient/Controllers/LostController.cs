@@ -1,6 +1,7 @@
 ﻿using GeoPetClient.Database;
 using GeoPetClient.DataModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GeoPetClient.Controllers
@@ -21,6 +22,13 @@ namespace GeoPetClient.Controllers
             if (pet != null) pet.IsLost = true;
 
             context.SaveChanges();
+        }
+
+        [HttpGet]
+        public List<LostPet> GetLostPets()
+        {
+            var context = GeoPetContext.GetInstance();
+            return context.LostPets.ToList();
         }
     }
 }
