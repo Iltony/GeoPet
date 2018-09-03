@@ -13,6 +13,7 @@ namespace GeoPetClient.Database
             if (context.Database.EnsureCreated())
             {
                 context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
                 context.Owners.Add((new Owner
                 {
                     Mail = "mail1@mail.com",
@@ -23,7 +24,7 @@ namespace GeoPetClient.Database
 
                 context.Pets.Add((new Pet
                 {
-                    Birthdate = "17/12/2015",
+                    Birthdate = new DateTime(2015, 12, 17),
                     Color = "Blanco",
                     Email = "mail1@mail.com",
                     ImageUrl = "www.image.com/1234",

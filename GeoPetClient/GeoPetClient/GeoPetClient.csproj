@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <None Update="geopet.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
