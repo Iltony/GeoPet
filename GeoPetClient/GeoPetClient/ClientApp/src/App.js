@@ -10,6 +10,7 @@ import { EncontreMascota } from './components/EncontreMascota';
 import { LogIn } from './components/LogIn';
 import { VerMascota } from './components/VerMascota';
 
+
 export default class App extends Component {
 	constructor(props){
 		super(props);
