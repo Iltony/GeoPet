@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { ReactBingmaps } from 'react-bingmaps';
 import './App.css'
-import { debug } from 'util';
 
 export class EncontreMascota extends Component {
-
 	displayName = EncontreMascota.name
 	name = ""
 	getParameterByName(name, url) {
 		if (!url) url = window.location.href;
-		name = name.replace(/[\[\]]/g, '\\$&');
+		name = name.replace(/[[\]]/g, '\\$&');
 		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
 			results = regex.exec(url);
 		if (!results) return null;
@@ -17,7 +15,6 @@ export class EncontreMascota extends Component {
 		return decodeURIComponent(results[2].replace(/\+/g, ' '));
 	}
 
-	
 	found(location) {
 
 		var mascota = {
@@ -35,7 +32,6 @@ export class EncontreMascota extends Component {
 				"Content-Type": "application/json"
 			}
 		})
-		// .then(response => response.json())
 		.then(data => {
 			console.log(data);
 		});
@@ -51,16 +47,6 @@ export class EncontreMascota extends Component {
 			lostLocationPushPin: [],
 			loading: false
 		};
-
-		// fetch(`api/PetController/ByEmailName?name=${this.nameSt}&email=${this.emailSt}`)
-		// .then(response => response.json())
-		// .then(data => {
-		// 	this.setState({ : data, loading: false });
-		// });
-
-
-
-		// emailSt = this.getParameterByName('email');
 	}
 
 	componentDidMount() {

@@ -1,41 +1,59 @@
 ﻿import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
+import {
+	Collapse,
+	NavbarToggler,
+	Nav,
+	NavLink,
+	NavItem
+	} from 'reactstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { faThList } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
+import { library, icon, toHtml } from '@fortawesome/fontawesome-svg-core'
 import './NavMenu.css';
 
 export class NavMenu extends Component {
 	displayName = NavMenu.name
 
+	constructor(props) {
+		super(props);
+	
+		this.toggle = this.toggle.bind(this);
+		this.state = {
+		  isOpen: false
+		};
+		
+	}
+	toggle() {
+		this.setState({
+			isOpen: !this.state.isOpen
+		});
+	}
+
 	render() {
+		
 		return (
-			<Navbar inverse fixedTop fluid collapseOnSelect>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<Link to={'/'}>GeoPet!</Link>
-					</Navbar.Brand>
-					<Navbar.Toggle />
-				</Navbar.Header>
-				<Navbar.Collapse>
-					<Nav>
-						<LinkContainer to={'/mascotas'}>
-							<NavItem>
-								<Glyphicon glyph='th-list' /> Mascotas
-                </NavItem>
-						</LinkContainer>
-						<LinkContainer to={'/perdi-mascota'}>
-							<NavItem>
-								<Glyphicon glyph='th-list' /> Perdi mi mascota!
-                </NavItem>
-						</LinkContainer>
-						<LinkContainer to={'/encontre-mascota'}>
-							<NavItem>
-								<Glyphicon glyph='th-list' /> Encontre una mascota!
-                </NavItem>
-						</LinkContainer>
+			<div className="floating">
+				<NavbarToggler onClick={this.toggle}>
+					<div><FontAwesomeIcon icon={faThList} /></div>
+				</NavbarToggler>	
+				<Collapse isOpen={this.state.isOpen} >
+					<Nav vertical>
+						<NavItem>
+							<NavLink tag={Link} to="/mascotas">Mascotas</NavLink>
+						</NavItem>
+						<NavItem>
+								<NavLink tag={Link} to="/perdi-mascota">Perdi mi mascota!</NavLink>
+						</NavItem>
+						<NavItem>
+								<NavLink tag={Link} to="/encontre-mascota">Encontre una mascota!</NavLink>
+						</NavItem>
 					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
+				</Collapse>
+			</div>
 		);
 	}
 }
