@@ -7,12 +7,12 @@ import {
 	NavLink,
 	NavItem
 	} from 'reactstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+//import { LinkContainer } from 'react-router-bootstrap';
 import { faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-import { library, icon, toHtml } from '@fortawesome/fontawesome-svg-core'
+//import { library, icon, toHtml } from '@fortawesome/fontawesome-svg-core'
 import './NavMenu.css';
 
 export class NavMenu extends Component {
